@@ -10,7 +10,7 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "preschool-quiz.js",
+    filename: "react-redux-quiz.js",
     publicPath: "/"
   },
   devServer: {
