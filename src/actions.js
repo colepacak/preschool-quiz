@@ -1,15 +1,6 @@
-export function receiveTestList(list) {
+export function sessionInit(username, test, timestamp) {
   return {
-    type: 'RECEIVE_TEST_LIST',
-    payload: {
-      list
-    }
-  }
-}
-
-export function initSession(username, test, timestamp) {
-  return {
-    type: 'INIT_SESSION',
+    type: 'SESSION_INIT',
     payload: {
       username,
       test,
@@ -18,42 +9,34 @@ export function initSession(username, test, timestamp) {
   }
 }
 
-export function receiveQuestionResponse(response) {
+export function sessionRemove() {
   return {
-    type: 'RECEIVE_QUESTION_RESPONSE',
+    type: 'SESSION_REMOVE'
+  }
+}
+
+export function sessionResponseReceive(response) {
+  return {
+    type: 'SESSION_RESPONSE_RECEIVE',
     payload: {
       response
     }
   }
 }
 
-export function nextQuestion() {
+export function sessionNextQuestion() {
   return {
-    type: 'NEXT_QUESTION'
+    type: 'SESSION_NEXT_QUESTION'
   }
 }
 
-export function removeSession() {
-  return {
-    type: 'REMOVE_SESSION'
-  }
-}
 
-export function createResult(session, test) {
+export function resultCreate(session, test) {
   return {
-    type: 'CREATE_RESULT',
+    type: 'RESULT_CREATE',
     payload: {
       session,
       test
-    }
-  }
-}
-
-export function changeViewMode(mode) {
-  return {
-    type: 'CHANGE_VIEW_MODE',
-    payload: {
-      mode
     }
   }
 }

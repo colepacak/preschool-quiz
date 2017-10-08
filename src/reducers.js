@@ -1,18 +1,10 @@
 import { last } from 'lodash';
 
-function testReducer(state = {}, action) {
-  switch(action.type) {
-    case 'RECEIVE_TEST_LIST':
-      return action.payload.list;
-      break;
-    default:
-      return state;
-  }
-}
+import defaultState from './default-state.js';
 
 function sessionReducer(state = {}, action, test_list) {
   switch(action.type) {
-    case 'INIT_SESSION':
+    case 'SESSION_INIT':
       // todo: To achieve random shuffling of questions, the question order would need to be passed in via the payload.
       let question_order = Object.keys(test_list[action.payload.test].question_list);
       return {
@@ -22,11 +14,11 @@ function sessionReducer(state = {}, action, test_list) {
         timestamp: action.payload.timestamp,
         question_order: question_order,
         question_current: question_order[0],
-        response_list: {}
+        response_list: {},
+        view_mode: 'testing'
       };
-      break;
 
-    case 'RECEIVE_QUESTION_RESPONSE':
+    case 'SESSION_RESPONSE_RECEIVE':
       // Reject invalid responses
       const option_list = Object.keys(test_list[state.test].question_list[state.question_current].option_list);
       if (!option_list.includes(action.payload.response.toString())) { return state; }
@@ -38,9 +30,8 @@ function sessionReducer(state = {}, action, test_list) {
           [state.question_current]: action.payload.response
         }
       };
-      break;
 
-    case 'NEXT_QUESTION':
+    case 'SESSION_NEXT_QUESTION':
       let index = state.question_order.indexOf(state.question_current);
       // Prevent the advancement to non-existent questions.
       if (state.question_order[index + 1] === undefined) { return state; }
@@ -49,11 +40,17 @@ function sessionReducer(state = {}, action, test_list) {
         ...state,
         question_current: state.question_order[index + 1]
       };
-      break;
 
-    case 'REMOVE_SESSION':
-      return {};
-      break;
+    case 'RESULT_CREATE':
+      return {
+        ...state,
+        view_mode: 'result'
+      };
+
+    case 'SESSION_REMOVE':
+      return {
+        view_mode: 'registration'
+      };
 
     default:
       return state;
@@ -62,7 +59,7 @@ function sessionReducer(state = {}, action, test_list) {
 
 function resultReducer(state = {}, action) {
   switch (action.type) {
-    case 'CREATE_RESULT':
+    case 'RESULT_CREATE':
       const session = action.payload.session;
       const test = action.payload.test;
       // Increment result ids
@@ -85,27 +82,15 @@ function resultReducer(state = {}, action) {
           score: parseFloat((questions_correct / questions_total).toFixed(3))
         }
       };
-      break;
     default:
       return state;
   }
 }
 
-function viewModeReducer(state = null, action) {
-  switch (action.type) {
-    case 'CHANGE_VIEW_MODE':
-      return action.payload.mode;
-      break;
-    default:
-      return state;
-  }
-}
-
-export default function mainReducer(state = {}, action) {
+export default function mainReducer(state = defaultState, action) {
   return {
-    test_list: testReducer(state.test_list, action),
+    test_list: defaultState.test_list,
     session: sessionReducer(state.session, action, state.test_list),
     result_list: resultReducer(state.result_list, action, state.session, state.test_list),
-    view_mode: viewModeReducer(state.view_mode, action)
   }
 }
