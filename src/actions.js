@@ -1,6 +1,6 @@
-export function sessionInit(username, test, timestamp) {
+export function sessionCreate(username, test, timestamp) {
   return {
-    type: 'SESSION_INIT',
+    type: 'SESSION_CREATE',
     payload: {
       username,
       test,

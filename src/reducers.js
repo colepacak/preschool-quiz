@@ -4,7 +4,7 @@ import defaultState from './default-state.js';
 
 function sessionReducer(state = {}, action, test_list) {
   switch(action.type) {
-    case 'SESSION_INIT':
+    case 'SESSION_CREATE':
       // todo: To achieve random shuffling of questions, the question order would need to be passed in via the payload.
       let question_order = Object.keys(test_list[action.payload.test].question_list);
       return {
