@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 class Registration extends React.Component {
 
   static propTypes = {
-    test_list: PropTypes.array.isRequired,
+    test_option_list: PropTypes.array.isRequired,
     handleSubmit: PropTypes.func.isRequired
   };
 
   _buildTestOptions() {
-    const options = this.props.test_list.map((t, i) => {
+    const options = this.props.test_option_list.map((t, i) => {
       return (
         <div key={t.id}>
           <input id={t.id} type="radio" value={t.id} name="test" defaultChecked={i === 0}/>

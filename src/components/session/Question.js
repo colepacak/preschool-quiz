@@ -1,0 +1,39 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { transform } from 'lodash';
+
+class Question extends React.Component {
+
+  static propTypes = {
+    text: PropTypes.string.isRequired,
+    option_list: PropTypes.array.isRequired,
+  };
+
+  _handleSubmit(e) {
+    e.preventDefault();
+    console.log(e.target.option.value)
+  }
+
+  render() {
+    return (
+      <div className="session--section--test">
+        <div className="session--test-question--text">{this.props.text}</div>
+        <form onSubmit={this._handleSubmit.bind(this)}>
+          {
+            this.props.option_list.map(o => {
+              return (
+                <div key={o.id}>
+                  <input id={'option-' + o.id} type="radio" value={o.id} name="option"/>
+                  <label htmlFor={'option-' + o.id}>{o.value}</label>
+                </div>
+              )
+            })
+          }
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    )
+  }
+}
+
+export default Question;

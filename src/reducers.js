@@ -15,7 +15,7 @@ function sessionReducer(state = {}, action, test_list) {
         question_order: question_order,
         question_current: question_order[0],
         response_list: {},
-        view_mode: 'testing'
+        view_mode: 'test'
       };
 
     case 'SESSION_RESPONSE_RECEIVE':
