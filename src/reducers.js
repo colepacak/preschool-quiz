@@ -47,6 +47,7 @@ function sessionReducer(state = {}, action, test_list) {
     case 'RESULT_CREATE':
       return {
         ...state,
+        question_current: null,
         view_mode: 'result'
       };
 

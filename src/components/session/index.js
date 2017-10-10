@@ -5,6 +5,7 @@ import { transform } from 'lodash';
 import Registration from './Registration.js';
 import Meta from './Meta.js';
 import Question from './Question.js';
+import Result from './Result.js';
 
 class Session extends React.Component {
 
@@ -18,7 +19,8 @@ class Session extends React.Component {
     test: PropTypes.object,
     // Actions
     sessionCreate: PropTypes.func.isRequired,
-    sessionResponseSubmit: PropTypes.func.isRequired
+    sessionResponseSubmit: PropTypes.func.isRequired,
+    sessionRemove: PropTypes.func.isRequired
   };
 
   _getViewModeTest() {
@@ -46,10 +48,20 @@ class Session extends React.Component {
       <div className="session--view-mode--registration">
         <Registration
           test_option_list={this.props.test_option_list}
-          handleSubmit={this.props.sessionCreate}
+          onSubmit={this.props.sessionCreate}
         />
       </div>
     );
+  }
+
+  _getViewModeResult() {
+    return (
+      <div className="session--view-mode--result">
+        <Result
+          onSubmit={this.props.sessionRemove}
+        />
+      </div>
+    )
   }
 
   render() {
@@ -57,6 +69,9 @@ class Session extends React.Component {
     switch (this.props.view_mode) {
       case 'test':
         view = this._getViewModeTest();
+        break;
+      case 'result':
+        view = this._getViewModeResult();
         break;
       case 'registration':
       default:

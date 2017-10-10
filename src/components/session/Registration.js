@@ -5,7 +5,7 @@ class Registration extends React.Component {
 
   static propTypes = {
     test_option_list: PropTypes.array.isRequired,
-    handleSubmit: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired
   };
 
   _buildTestOptions() {
@@ -27,7 +27,7 @@ class Registration extends React.Component {
 
   _handleSubmit(e) {
     e.preventDefault();
-    this.props.handleSubmit(e.target.name.value, e.target.test.value, new Date().getTime());
+    this.props.onSubmit(e.target.name.value, e.target.test.value, new Date().getTime());
   }
 
   render() {

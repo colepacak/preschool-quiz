@@ -17,7 +17,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     sessionCreate: (username, test, timestamp) => dispatch(actions.sessionCreate(username, test, timestamp)),
-    sessionResponseSubmit: response => dispatch(actions.sessionResponseSubmit(response))
+    sessionResponseSubmit: response => dispatch(actions.sessionResponseSubmit(response)),
+    sessionRemove: () => dispatch(actions.sessionRemove())
   }
 };
 
