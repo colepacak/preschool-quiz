@@ -6,11 +6,11 @@ function sessionReducer(state = {}, action, test_list) {
   switch(action.type) {
     case 'SESSION_CREATE':
       // todo: To achieve random shuffling of questions, the question order would need to be passed in via the payload.
-      let question_order = Object.keys(test_list[action.payload.test].question_list);
+      let question_order = Object.keys(test_list[action.payload.test_id].question_list);
       return {
         ...state,
         username: action.payload.username,
-        test: action.payload.test,
+        test_id: action.payload.test_id,
         timestamp: action.payload.timestamp,
         question_order: question_order,
         question_current: question_order[0],
@@ -18,9 +18,12 @@ function sessionReducer(state = {}, action, test_list) {
         view_mode: 'test'
       };
 
-    case 'SESSION_RESPONSE_RECEIVE':
+      // submit a response
+      // advance either to next question or end of test
+
+    case 'SESSION_RESPONSE_ADD':
       // Reject invalid responses
-      const option_list = Object.keys(test_list[state.test].question_list[state.question_current].option_list);
+      const option_list = Object.keys(test_list[state.test_id].question_list[state.question_current].option_list);
       if (!option_list.includes(action.payload.response.toString())) { return state; }
 
       return {
@@ -60,25 +63,24 @@ function sessionReducer(state = {}, action, test_list) {
 function resultReducer(state = {}, action) {
   switch (action.type) {
     case 'RESULT_CREATE':
-      const session = action.payload.session;
-      const test = action.payload.test;
+      const { test, response_list } = action.payload;
       // Increment result ids
       const result_id = Object.keys(state).length === 0 ? 0 : last(Object.keys(state) + 1);
 
       // Tally score
       const questions_total = Object.keys(test.question_list).length;
 
-      const questions_correct = Object.keys(session.response_list).reduce(function(accumulator, question) {
-        const is_correct = session.response_list[question] === test.question_list[question].answer;
+      const questions_correct = Object.keys(response_list).reduce(function(accumulator, question) {
+        const is_correct = response_list[question] === test.question_list[question].answer;
         return is_correct ? accumulator + 1 : accumulator;
       }, 0);
 
       return {
         ...state,
         [result_id]: {
-          username: session.username,
-          test: session.test,
-          timestamp: session.timestamp,
+          username: action.payload.username,
+          test: action.payload.test_id,
+          timestamp: action.payload.timestamp,
           score: parseFloat((questions_correct / questions_total).toFixed(3))
         }
       };
@@ -91,6 +93,6 @@ export default function mainReducer(state = defaultState, action) {
   return {
     test_list: defaultState.test_list,
     session: sessionReducer(state.session, action, state.test_list),
-    result_list: resultReducer(state.result_list, action, state.session, state.test_list),
+    result_list: resultReducer(state.result_list, action),
   }
 }

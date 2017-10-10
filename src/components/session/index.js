@@ -12,14 +12,13 @@ class Session extends React.Component {
     // Properties
     username: PropTypes.string,
     timestamp: PropTypes.number,
-    question_order: PropTypes.array,
     question_current: PropTypes.string,
-    response_list: PropTypes.object,
     view_mode: PropTypes.string.isRequired,
     test_option_list: PropTypes.array.isRequired,
     test: PropTypes.object,
     // Actions
-    sessionCreate: PropTypes.func.isRequired
+    sessionCreate: PropTypes.func.isRequired,
+    sessionResponseSubmit: PropTypes.func.isRequired
   };
 
   _getViewModeTest() {
@@ -36,6 +35,7 @@ class Session extends React.Component {
           option_list={transform(question_current.option_list, function(result, value, key) {
             result.push({ id: key, value: value });
           },[])}
+          onSubmit={this.props.sessionResponseSubmit}
         />
       </div>
     );

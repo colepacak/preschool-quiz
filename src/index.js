@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createLogger } from 'redux-logger';
 import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
 import { last } from 'lodash';
 
 import mainReducer from './reducers.js';
@@ -11,7 +12,7 @@ import SessionContainer from './containers/SessionContainer.js';
 
 const loggerMiddleware = createLogger();
 
-let storeMiddleware = [];
+let storeMiddleware = [thunkMiddleware];
 
 if (module.hot) {
   storeMiddleware.push(loggerMiddleware);
@@ -23,13 +24,13 @@ let store = createStore(
 
 // store.dispatch(actions.sessionCreate('Lucia', 'letter_sounds', 1506107974));
 //
-// store.dispatch(actions.sessionResponseReceive(0));
+// store.dispatch(actions.sessionResponseSubmit(0));
 // nextQuestion();
 //
-// store.dispatch(actions.sessionResponseReceive(1));
+// store.dispatch(actions.sessionResponseSubmit(1));
 // nextQuestion();
 //
-// store.dispatch(actions.sessionResponseReceive(1));
+// store.dispatch(actions.sessionResponseSubmit(1));
 // nextQuestion();
 //
 // // Determine if we proceed to next question or finish the test

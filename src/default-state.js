@@ -23,18 +23,18 @@ export default {
   },
   session: {
     username: 'Leena',
-    test: 'letter_sounds',
+    test_id: 'letter_sounds',
     timestamp: 1506002406,
     question_order: ['0', '1', '2'],
     question_current: '0',
     response_list: { // { '0': '0', '1': '1' }
     },
-    view_mode: 'test' // 'registration', 'test', 'result'
+    view_mode: 'registration' // 'registration', 'test', 'result'
   },
   result_list: {
     '0': {
       username: 'Scarlett',
-      test: 'letter_sounds',
+      test_id: 'letter_sounds',
       timestamp: 1506002406,
       score: 0.33
     }

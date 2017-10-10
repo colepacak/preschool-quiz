@@ -7,11 +7,12 @@ class Question extends React.Component {
   static propTypes = {
     text: PropTypes.string.isRequired,
     option_list: PropTypes.array.isRequired,
+    onSubmit: PropTypes.func.isRequired,
   };
 
   _handleSubmit(e) {
     e.preventDefault();
-    console.log(e.target.option.value)
+    this.props.onSubmit(e.target.option.value);
   }
 
   render() {
