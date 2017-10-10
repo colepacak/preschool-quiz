@@ -22,21 +22,20 @@ export default {
     }
   },
   session: {
-    username: 'Leena',
-    test_id: 'letter_sounds',
-    timestamp: 1506002406,
-    question_order: ['0', '1', '2'],
-    question_current: '0',
-    response_list: { // { '0': '0', '1': '1' }
-    },
-    view_mode: 'registration' // 'registration', 'test', 'result'
+    // username: 'Leena', // string
+    // test_id: 'letter_sounds', // string, test id
+    // timestamp: 1507596091106, // integer
+    // question_order: ['0', '1', '2'], // array of question ids
+    // question_current: '0', // string, question id
+    // response_list: { '0': '0', '5': '1' }, // object keyed by question ids with values of option ids
+    view_mode: 'registration' // string, either 'registration', 'test' or 'result'
   },
   result_list: {
     '0': {
       username: 'Scarlett',
       test_id: 'letter_sounds',
-      timestamp: 1506002406,
-      score: 0.33
+      timestamp: 1507596091106,
+      score: 0.333
     }
   }
 };
