@@ -2,9 +2,8 @@
 ~~* instead of session reducer responding to RESULT_CREATE, should a second view mode action be dispatched?~~
 ~~* change SESSION_NEXT_QUESTION to session question increment?~~
 ~~* session reducer, on result create, how to null current question?~~
-* pass guid to RESULT_CREATE instead of incrementing ids. use a thunk to generate guid and then call action
+~~* pass guid to RESULT_CREATE instead of incrementing ids. use a thunk to generate guid and then call action~~
+~~* result session view~~
 
-* result session view
 * leaderboard component
-* if error from sessionResponseSubmit, don't proceed to next question (e.g. if invalid response is given)
 * save data in local storage

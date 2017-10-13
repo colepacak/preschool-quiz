@@ -36,6 +36,7 @@ class Registration extends React.Component {
       <form onSubmit={this._handleSubmit.bind(this)}>
         <input name="name" type="text" placeholder="Enter your name"/>
         {testOptions}
+        <br/>
         <button type="submit">Submit</button>
       </form>
     )

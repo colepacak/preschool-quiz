@@ -1,5 +1,3 @@
-import { last } from 'lodash';
-
 import defaultState from './default-state.js';
 
 function sessionReducer(state = {}, action, test_list) {
@@ -12,10 +10,10 @@ function sessionReducer(state = {}, action, test_list) {
       };
 
     case 'SESSION_CREATE':
-      // todo: To achieve random shuffling of questions, the question order would need to be passed in via the payload.
       let question_order = Object.keys(test_list[action.payload.test_id].question_list);
       return {
         ...state,
+        uuid: action.payload.uuid,
         username: action.payload.username,
         test_id: action.payload.test_id,
         timestamp: action.payload.timestamp,
@@ -53,6 +51,12 @@ function sessionReducer(state = {}, action, test_list) {
         question_current: null
       };
 
+    // Clear everything form the session except for the view mode.
+    case 'SESSION_REMOVE':
+      return {
+        view_mode: state.view_mode
+      };
+
     default:
       return state;
   }
@@ -61,25 +65,22 @@ function sessionReducer(state = {}, action, test_list) {
 function resultReducer(state = {}, action) {
   switch (action.type) {
     case 'RESULT_CREATE':
-      const { test, response_list } = action.payload;
-      // Increment result ids
-      const result_id = Object.keys(state).length === 0 ? 0 : last(Object.keys(state) + 1);
-
+      const { session, test } = action.payload;
       // Tally score
       const questions_total = Object.keys(test.question_list).length;
 
-      const questions_correct = Object.keys(response_list).reduce(function(accumulator, question) {
-        const is_correct = response_list[question] === test.question_list[question].answer;
+      const questions_correct = Object.keys(session.response_list).reduce(function(accumulator, question) {
+        const is_correct = session.response_list[question] === test.question_list[question].answer;
         return is_correct ? accumulator + 1 : accumulator;
       }, 0);
 
       return {
         ...state,
-        [result_id]: {
-          username: action.payload.username,
-          test: action.payload.test_id,
-          timestamp: action.payload.timestamp,
-          score: parseFloat((questions_correct / questions_total).toFixed(3))
+        [session.uuid]: {
+          username: session.username,
+          test: session.test_id,
+          timestamp: session.timestamp,
+          score: parseFloat((questions_correct / questions_total).toFixed(5))
         }
       };
     default:

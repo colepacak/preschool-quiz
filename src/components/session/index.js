@@ -17,6 +17,7 @@ class Session extends React.Component {
     view_mode: PropTypes.string.isRequired,
     test_option_list: PropTypes.array.isRequired,
     test: PropTypes.object,
+    result: PropTypes.object,
     // Actions
     sessionViewModeChange: PropTypes.func.isRequired,
     sessionCreate: PropTypes.func.isRequired,
@@ -33,6 +34,7 @@ class Session extends React.Component {
           test_name={this.props.test.name}
           timestamp={this.props.timestamp}
         />
+        <br/>
         <Question
           text={question_current.text}
           option_list={transform(question_current.option_list, function(result, value, key) {
@@ -66,8 +68,13 @@ class Session extends React.Component {
           test_name={this.props.test.name}
           timestamp={this.props.timestamp}
         />
+        <br/>
         <Result
-          onSubmit={this.props.sessionRemove}
+          score={this.props.result.score}
+          onSubmit={() => {
+            this.props.sessionRemove();
+            this.props.sessionViewModeChange('registration');
+          }}
         />
       </div>
     )

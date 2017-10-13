@@ -14,7 +14,7 @@ class Meta extends React.Component {
       <div className="session--section--meta">
         <div>Username: {this.props.username}</div>
         <div>Test: {this.props.test_name}</div>
-        <div>Date: {this.props.timestamp}</div>
+        <div>Date: {new Date(this.props.timestamp).toDateString()}</div>
       </div>
     )
   }

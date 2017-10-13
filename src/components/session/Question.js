@@ -30,6 +30,7 @@ class Question extends React.Component {
               )
             })
           }
+          <br/>
           <button type="submit">Submit</button>
         </form>
       </div>

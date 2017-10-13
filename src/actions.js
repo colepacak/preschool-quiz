@@ -9,10 +9,11 @@ export function sessionViewModeChange(view_mode) {
   }
 }
 
-export function sessionCreate(username, test_id, timestamp) {
+export function sessionCreate(uuid, username, test_id, timestamp) {
   return {
     type: 'SESSION_CREATE',
     payload: {
+      uuid,
       username,
       test_id,
       timestamp
@@ -37,7 +38,8 @@ export function sessionResponseSubmit(response) {
 
     if (last(session.question_order) === session.question_current) {
       const test = test_list[session.test_id];
-      dispatch(resultCreate(session.username, session.test, session.timestamp, session.response_list, test));
+
+      dispatch(resultCreate(session, test));
       dispatch(sessionQuestionCurrentUnset(null));
       dispatch(sessionViewModeChange('result'));
     } else {
@@ -67,14 +69,11 @@ export function sessionQuestionCurrentUnset() {
   }
 }
 
-export function resultCreate(username, test_id, timestamp, response_list, test) {
+export function resultCreate(session, test) {
   return {
     type: 'RESULT_CREATE',
     payload: {
-      username,
-      test_id,
-      timestamp,
-      response_list,
+      session,
       test
     }
   }
