@@ -12,9 +12,9 @@ class Meta extends React.Component {
   render() {
     return (
       <div className="session--section--meta">
-        <span>Username: {this.props.username}</span>
-        <span>Test: {this.props.test_name}</span>
-        <span>Date: {this.props.timestamp}</span>
+        <div>Username: {this.props.username}</div>
+        <div>Test: {this.props.test_name}</div>
+        <div>Date: {this.props.timestamp}</div>
       </div>
     )
   }

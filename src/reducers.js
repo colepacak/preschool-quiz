@@ -4,6 +4,13 @@ import defaultState from './default-state.js';
 
 function sessionReducer(state = {}, action, test_list) {
   switch(action.type) {
+
+    case 'SESSION_VIEW_MODE_CHANGE':
+      return {
+        ...state,
+        view_mode: action.payload.view_mode
+      };
+
     case 'SESSION_CREATE':
       // todo: To achieve random shuffling of questions, the question order would need to be passed in via the payload.
       let question_order = Object.keys(test_list[action.payload.test_id].question_list);
@@ -14,12 +21,8 @@ function sessionReducer(state = {}, action, test_list) {
         timestamp: action.payload.timestamp,
         question_order: question_order,
         question_current: question_order[0],
-        response_list: {},
-        view_mode: 'test'
+        response_list: {}
       };
-
-      // submit a response
-      // advance either to next question or end of test
 
     case 'SESSION_RESPONSE_ADD':
       // Reject invalid responses
@@ -34,7 +37,7 @@ function sessionReducer(state = {}, action, test_list) {
         }
       };
 
-    case 'SESSION_NEXT_QUESTION':
+    case 'SESSION_QUESTION_CURRENT_INCREMENT':
       let index = state.question_order.indexOf(state.question_current);
       // Prevent the advancement to non-existent questions.
       if (state.question_order[index + 1] === undefined) { return state; }
@@ -44,16 +47,10 @@ function sessionReducer(state = {}, action, test_list) {
         question_current: state.question_order[index + 1]
       };
 
-    case 'RESULT_CREATE':
+    case 'SESSION_QUESTION_CURRENT_UNSET':
       return {
         ...state,
-        question_current: null,
-        view_mode: 'result'
-      };
-
-    case 'SESSION_REMOVE':
-      return {
-        view_mode: 'registration'
+        question_current: null
       };
 
     default:

@@ -18,6 +18,7 @@ class Session extends React.Component {
     test_option_list: PropTypes.array.isRequired,
     test: PropTypes.object,
     // Actions
+    sessionViewModeChange: PropTypes.func.isRequired,
     sessionCreate: PropTypes.func.isRequired,
     sessionResponseSubmit: PropTypes.func.isRequired,
     sessionRemove: PropTypes.func.isRequired
@@ -48,7 +49,10 @@ class Session extends React.Component {
       <div className="session--view-mode--registration">
         <Registration
           test_option_list={this.props.test_option_list}
-          onSubmit={this.props.sessionCreate}
+          onSubmit={(name, test, time) => {
+            this.props.sessionCreate(name, test, time);
+            this.props.sessionViewModeChange('test');
+          }}
         />
       </div>
     );
@@ -57,6 +61,11 @@ class Session extends React.Component {
   _getViewModeResult() {
     return (
       <div className="session--view-mode--result">
+        <Meta
+          username={this.props.username}
+          test_name={this.props.test.name}
+          timestamp={this.props.timestamp}
+        />
         <Result
           onSubmit={this.props.sessionRemove}
         />
