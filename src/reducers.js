@@ -80,7 +80,7 @@ function resultReducer(state = {}, action) {
           username: session.username,
           test: session.test_id,
           timestamp: session.timestamp,
-          score: parseFloat((questions_correct / questions_total).toFixed(5))
+          score: parseFloat((questions_correct / questions_total).toFixed(4))
         }
       };
     default:

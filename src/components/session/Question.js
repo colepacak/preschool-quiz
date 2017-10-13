@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { transform } from 'lodash';
 
 class Question extends React.Component {
 

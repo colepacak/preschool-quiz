@@ -35,7 +35,13 @@ export default {
       username: 'Scarlett',
       test_id: 'letter_sounds',
       timestamp: 1507596091106,
-      score: 0.333
+      score: 0.3333
+    },
+    '1': {
+      username: 'Lucia',
+      test_id: 'letter_sounds',
+      timestamp: 1507596091106,
+      score: 1.0
     }
   }
 };

@@ -29,6 +29,7 @@ class Session extends React.Component {
     const question_current = this.props.test.question_list[this.props.question_current];
     return (
       <div className="session--view-mode--test">
+        <h2>Test in Progress</h2>
         <Meta
           username={this.props.username}
           test_name={this.props.test.name}
@@ -49,6 +50,7 @@ class Session extends React.Component {
   _getViewModeRegistration() {
     return (
       <div className="session--view-mode--registration">
+        <h2>Registration</h2>
         <Registration
           test_option_list={this.props.test_option_list}
           onSubmit={(name, test, time) => {
@@ -63,6 +65,7 @@ class Session extends React.Component {
   _getViewModeResult() {
     return (
       <div className="session--view-mode--result">
+        <h2>Result</h2>
         <Meta
           username={this.props.username}
           test_name={this.props.test.name}

@@ -9,6 +9,7 @@ import { last } from 'lodash';
 import mainReducer from './reducers.js';
 import * as actions from './actions.js';
 import SessionContainer from './containers/SessionContainer.js';
+import LeaderboardContainer from './containers/LeaderboardContainer.js';
 
 const loggerMiddleware = createLogger();
 
@@ -52,4 +53,11 @@ ReactDOM.render(
     <SessionContainer />
   </Provider>,
   document.getElementById('session')
+);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <LeaderboardContainer />
+  </Provider>,
+  document.getElementById('leaderboard')
 );

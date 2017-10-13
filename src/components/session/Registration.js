@@ -34,7 +34,10 @@ class Registration extends React.Component {
     const testOptions = this._buildTestOptions();
     return (
       <form onSubmit={this._handleSubmit.bind(this)}>
-        <input name="name" type="text" placeholder="Enter your name"/>
+        <div>
+          <input name="name" type="text" placeholder="Enter your name"/>
+        </div>
+        <br/>
         {testOptions}
         <br/>
         <button type="submit">Submit</button>
