@@ -37,6 +37,7 @@ class Session extends React.Component {
         />
         <br/>
         <Question
+          question_id={this.props.question_current}
           text={question_current.text}
           option_list={transform(question_current.option_list, function(result, value, key) {
             result.push({ id: key, value: value });

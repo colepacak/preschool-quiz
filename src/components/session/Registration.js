@@ -20,6 +20,7 @@ class Registration extends React.Component {
 
     return (
       <div className="test-options">
+        <h4>Test type</h4>
         {options}
       </div>
     );
@@ -37,7 +38,6 @@ class Registration extends React.Component {
         <div>
           <input name="name" type="text" placeholder="Enter your name"/>
         </div>
-        <br/>
         {testOptions}
         <br/>
         <button type="submit">Submit</button>

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 class Question extends React.Component {
 
   static propTypes = {
+    question_id: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     option_list: PropTypes.array.isRequired,
     onSubmit: PropTypes.func.isRequired,
@@ -21,10 +22,11 @@ class Question extends React.Component {
         <form onSubmit={this._handleSubmit.bind(this)}>
           {
             this.props.option_list.map(o => {
+              const key = this.props.question_id + '-option-' + o.id;
               return (
-                <div key={o.id}>
-                  <input id={'option-' + o.id} type="radio" value={o.id} name="option"/>
-                  <label htmlFor={'option-' + o.id}>{o.value}</label>
+                <div key={key}>
+                  <input id={key} type="radio" value={o.id} name="option"/>
+                  <label htmlFor={key}>{o.value}</label>
                 </div>
               )
             })
