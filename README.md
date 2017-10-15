@@ -5,8 +5,8 @@
 ~~* pass guid to RESULT_CREATE instead of incrementing ids. use a thunk to generate guid and then call action~~
 ~~* result session view~~
 ~~* leaderboard component~~
+~~* save data in local storage~~
 
-* save data in local storage
 * test type label on registration
 * dont pre-select question option
 * prevent response submission unless an option has been selected

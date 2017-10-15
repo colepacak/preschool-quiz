@@ -9,16 +9,16 @@ class Leaderboard extends React.Component {
 
   render() {
     const row_list = this.props.result_list
-      // Sort descending by score
-      .sort((a, b) => {
-        if (a.score < b.score) { return 1; }
-        if (a.score > b.score) { return -1; }
-        return 0;
-      })
       // Sort descending by date
       .sort((a, b) => {
         if (a.timestamp < b.timestamp) { return 1; }
         if (a.timestamp > b.timestamp) { return -1; }
+        return 0;
+      })
+      // Sort descending by score
+      .sort((a, b) => {
+        if (a.score < b.score) { return 1; }
+        if (a.score > b.score) { return -1; }
         return 0;
       })
       .map(r => {
