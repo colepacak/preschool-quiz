@@ -31,17 +31,17 @@ export default {
     view_mode: 'registration' // string, either 'registration', 'test' or 'result'
   },
   result_list: {
-    '0': {
-      username: 'Scarlett',
-      test_id: 'letter_sounds',
-      timestamp: 1507596091106,
-      score: 0.3333
-    },
-    '1': {
-      username: 'Lucia',
-      test_id: 'letter_sounds',
-      timestamp: 1507596091106,
-      score: 1.0
-    }
+    // '0': {
+    //   username: 'Scarlett',
+    //   test_id: 'letter_sounds',
+    //   timestamp: 1507596091106,
+    //   score: 0.3333
+    // },
+    // '1': {
+    //   username: 'Lucia',
+    //   test_id: 'letter_sounds',
+    //   timestamp: 1507596091106,
+    //   score: 1.0
+    // }
   }
 };

@@ -42,6 +42,8 @@ export function sessionResponseSubmit(response) {
       dispatch(resultCreate(session, test));
       dispatch(sessionQuestionCurrentUnset(null));
       dispatch(sessionViewModeChange('result'));
+      // Overwrite local storage with new state
+      window.localStorage.setItem('result_list:react-redux-quiz', JSON.stringify(getState().result_list));
     } else {
       dispatch(sessionQuestionCurrentIncrement());
     }

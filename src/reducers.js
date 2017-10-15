@@ -1,4 +1,14 @@
+import { merge } from 'lodash';
+
 import defaultState from './default-state.js';
+
+// Merge results from local storage, if available
+merge(defaultState, { result_list: loadResultListFormLocalStorage() });
+
+function loadResultListFormLocalStorage() {
+  let stored_result_list = JSON.parse(window.localStorage.getItem('result_list:react-redux-quiz'));
+  return stored_result_list === null ? {} : stored_result_list;
+}
 
 function sessionReducer(state = {}, action, test_list) {
   switch(action.type) {

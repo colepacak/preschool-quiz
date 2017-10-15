@@ -7,3 +7,7 @@
 ~~* leaderboard component~~
 
 * save data in local storage
+* test type label on registration
+* dont pre-select question option
+* prevent response submission unless an option has been selected
+* basic styling
