@@ -1,0 +1,19 @@
+* {
+	box-sizing: border-box;
+}
+
+.quiz {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+#session {
+	padding: 0 10px;
+	margin-right: 10px;
+	background: #f3f3f3;
+}
+
+#leaderboard {
+	padding: 0 10px;
+	border: 1px solid #f3f3f3;
+}

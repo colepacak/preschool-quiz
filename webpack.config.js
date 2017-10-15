@@ -22,11 +22,17 @@ module.exports = {
   },
   devtool: "source-map",
   module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      exclude: /node_modules/,
-      loader: 'react-hot-loader!babel-loader'
-    }]
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'react-hot-loader!babel-loader'
+      },
+      {
+        test: /\.css$/,
+        loaders: ["style-loader", "css-loader"]
+      }
+    ],
   },
   resolve: {
     extensions: ['*', '.js', '.jsx']

@@ -8,6 +8,7 @@ import thunkMiddleware from 'redux-thunk';
 import mainReducer from './reducers.js';
 import SessionContainer from './containers/SessionContainer.js';
 import LeaderboardContainer from './containers/LeaderboardContainer.js';
+import './index.css';
 
 const loggerMiddleware = createLogger();
 
