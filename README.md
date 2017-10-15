@@ -1,13 +1,14 @@
-~~* change SESSION_REMOVE to session reset, which just clears non-view mode props? dispatch view mode action separately?~~
-~~* instead of session reducer responding to RESULT_CREATE, should a second view mode action be dispatched?~~
-~~* change SESSION_NEXT_QUESTION to session question increment?~~
-~~* session reducer, on result create, how to null current question?~~
-~~* pass guid to RESULT_CREATE instead of incrementing ids. use a thunk to generate guid and then call action~~
-~~* result session view~~
-~~* leaderboard component~~
-~~* save data in local storage~~
-~~* test type label on registration~~
-~~* dont pre-select question option~~
+## React Redux Quiz
 
-* prevent response submission unless an option has been selected
-* basic styling
+#### Purpose
+
+I created this project to cement my understanding of Redux, leaving me free to simply use React as a view layer. At the beginning, I chose the concept of a quiz that would be somewhat appropriate for preschoolers, in hopes that a side project would also be something I could share with my daughter. However, since showing her something this visually hideous might turn her off to coding, I may hold off. We'll see.
+   
+I purposely did very little styling in order to focus on the Redux flow, opting to dispatch more actions to keep my reducer logic lean. The more things that were trying to be accomplished in a single reduction made me think it would better to have more actions to minimize too many side effects within a reducer's handling of an action.
+
+Results are saved to local storage, with historical results loaded from there as well.
+
+#### Installation
+* `npm install` to load dependencies.
+* `npm start` to start Webpack Dev Server.
+* Run a server or open the file directly. I used `sudo python -m SimpleHTTPServer 8888`
